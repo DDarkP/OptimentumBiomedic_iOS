@@ -8,81 +8,95 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var auth: AuthManager  // ✅ conexión con el servicio
     @State private var email = ""
     @State private var password = ""
-    @State private var navegarADetalles = false
     @State private var mostrarError = false
-    
+    @State private var navegarMenu = false
+
     var body: some View {
-        VStack(spacing: 20) {
-            Image("LOGO") // Logo en tus Assets
-                .resizable()
-                .scaledToFit()
-                .frame(width: 120, height: 120)
-                .padding()
-            
-            VStack(spacing: 2) {
-                Text("Bienvenido")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                Text("Ingeniero")
-                    .font(.title2)
-                    .fontWeight(.bold)
-            }
-
-            TextField("Email", text: $email)
-                .keyboardType(.emailAddress)
-                .autocapitalization(.none)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
-
-            SecureField("Contraseña", text: $password)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
-
-            Button(action: {
-                if email.lowercased() == "admin@correo.com" && password == "12345" {
-                    navegarADetalles = true
-                } else {
-                    withAnimation(.spring()) {
-                        mostrarError = true
-                    }
-                }
-            }) {
-                Text("Iniciar sesión")
-                    .foregroundColor(.white)
+        NavigationStack {
+            VStack(spacing: 20) {
+                // 🖼️ Logo
+                Image("LOGO")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+
+                // 🧾 Títulos
+                VStack(spacing: 2) {
+                    Text("Bienvenido")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Text("Ingeniero")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                }
+
+                // 📧 Email
+                TextField("Email", text: $email)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .padding()
+                    .background(Color(.systemGray6))
                     .cornerRadius(10)
-                    .shadow(radius: 3)
+
+                // 🔒 Contraseña
+                SecureField("Contraseña", text: $password)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
+
+                // 🚀 Botón de login
+                Button(action: {
+                    if auth.login(email: email.lowercased(), password: password) {
+                        withAnimation(.easeInOut) {
+                            navegarMenu = true
+                            mostrarError = false
+                        }
+                    } else {
+                        withAnimation(.spring()) {
+                            mostrarError = true
+                        }
+                    }
+                }) {
+                    Text("Iniciar sesión")
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
+                }
+                .scaleEffect(mostrarError ? 1.05 : 1.0)
+                .animation(.easeInOut, value: mostrarError)
+
+                // ❌ Mensaje de error
+                if mostrarError {
+                    Text("Usuario o contraseña incorrectos")
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .transition(.opacity.combined(with: .slide))
+                }
+
+                // 🧭 Navegación al menú principal
+                NavigationLink("", destination: PantallaMenu(), isActive: $navegarMenu)
+
+                // 🔗 Enlaces extra
+                Button("¿Olvidaste tu contraseña?") {}
+                    .foregroundColor(.blue)
+
+                NavigationLink("Registro", destination: RegisterView())
+                    .underline()
+                    .padding(.top)
             }
-            .scaleEffect(mostrarError ? 1.05 : 1.0)
-            .animation(.easeInOut, value: mostrarError)
-
-            if mostrarError {
-                Text("Usuario o contraseña incorrectos")
-                    .foregroundColor(.red)
-                    .font(.caption)
-                    .transition(.opacity.combined(with: .slide))
-            }
-
-            NavigationLink("", destination: PantallaMenu(), isActive: $navegarADetalles)
-
-            Button("¿Olvidaste tu contraseña?") {}
-                .foregroundColor(.blue)
-
-            NavigationLink("Registro", destination: RegisterView())
-                .underline()
-                .padding(.top)
+            .padding()
         }
-        .padding()
     }
 }
 
-
 #Preview {
     LoginView()
+        .environmentObject(AuthManager()) // necesario para vista previa
 }

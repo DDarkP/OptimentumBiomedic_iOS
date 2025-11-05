@@ -8,12 +8,16 @@
 import SwiftUI
 
 @main
-struct OptimentumBiomedicApp: App {
+struct TuApp: App {
+    @StateObject var auth = AuthManager()
+    
     var body: some Scene {
         WindowGroup {
-            NavigationView {   // Habilita navegación en la raíz
-                LoginView()   // Vista inicial, puede navegar a otras vistas
+            NavigationView {
+                LoginView()
             }
+            .environmentObject(auth)
         }
     }
 }
+

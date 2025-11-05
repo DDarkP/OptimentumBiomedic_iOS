@@ -21,6 +21,8 @@
 		FBD7E6422EBAC195009F7B2C /* InventarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E6412EBAC195009F7B2C /* InventarioView.swift */; };
 		FBD7E6442EBAC1C3009F7B2C /* CotizacionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E6432EBAC1C3009F7B2C /* CotizacionView.swift */; };
 		FBD7E6462EBAC1E5009F7B2C /* ContratoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E6452EBAC1E5009F7B2C /* ContratoView.swift */; };
+		FBD7E6482EBAC83D009F7B2C /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E6472EBAC83D009F7B2C /* Usuario.swift */; };
+		FBD7E64A2EBAC859009F7B2C /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E6492EBAC859009F7B2C /* AuthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		FBD7E6412EBAC195009F7B2C /* InventarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventarioView.swift; sourceTree = "<group>"; };
 		FBD7E6432EBAC1C3009F7B2C /* CotizacionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotizacionView.swift; sourceTree = "<group>"; };
 		FBD7E6452EBAC1E5009F7B2C /* ContratoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContratoView.swift; sourceTree = "<group>"; };
+		FBD7E6472EBAC83D009F7B2C /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
+		FBD7E6492EBAC859009F7B2C /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				FB366F762EB657DF00190E14 /* OptimentumBiomedicApp.swift */,
+				FBD7E6472EBAC83D009F7B2C /* Usuario.swift */,
+				FBD7E6492EBAC859009F7B2C /* AuthManager.swift */,
 				FBD7E6452EBAC1E5009F7B2C /* ContratoView.swift */,
 				FBD7E6432EBAC1C3009F7B2C /* CotizacionView.swift */,
 				FBD7E63F2EBAC16F009F7B2C /* HojaDeVidaView.swift */,
@@ -286,6 +292,8 @@
 				FB366F772EB657DF00190E14 /* OptimentumBiomedicApp.swift in Sources */,
 				FBD7E6442EBAC1C3009F7B2C /* CotizacionView.swift in Sources */,
 				FBD7E63E2EBAC095009F7B2C /* PantallaMenu.swift in Sources */,
+				FBD7E64A2EBAC859009F7B2C /* AuthManager.swift in Sources */,
+				FBD7E6482EBAC83D009F7B2C /* Usuario.swift in Sources */,
 				FBD7E6402EBAC16F009F7B2C /* HojaDeVidaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
