@@ -18,65 +18,68 @@ struct RegisterView: View {
     @State private var mostrarError = false
 
     var body: some View {
-        VStack(spacing: 20) {
-            // Título
-            Text("Registro de Usuario")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+        ZStack {
+            // Fondo con gradiente
+            AppTheme.gradientePrincipal
+                .ignoresSafeArea()
 
-            // Campos
-            Group {
-                TextField("Nombres", text: $nombres)
-                    .textInputAutocapitalization(.words)
-                TextField("Apellidos", text: $apellidos)
-                    .textInputAutocapitalization(.words)
-                TextField("Correo electrónico", text: $correo)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                SecureField("Contraseña", text: $password)
+            VStack(spacing: 25) {
+                // Título principal
+                Text("Registro de Usuario")
+                    .font(AppTheme.fuenteTitulo)
+                    .fontWeight(.bold)
+                    .foregroundColor(AppTheme.colorPrimario)
+                    .padding(.top, 40)
+
+                // Campos de entrada usando el componente reutilizable
+                VStack(spacing: 15) {
+                    CampoTexto(placeholder: "Nombres", texto: $nombres)
+                    CampoTexto(placeholder: "Apellidos", texto: $apellidos)
+                    CampoTexto(placeholder: "Correo electrónico", texto: $correo)
+                    CampoTexto(placeholder: "Contraseña", texto: $password, esSeguro: true)
+                }
+
+                // Botón de registro
+                Button(action: registrarUsuario) {
+                    Text("Registrar")
+                        .font(AppTheme.fuenteNormal)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(AppTheme.colorResaltado)
+                        .cornerRadius(12)
+                        .shadow(color: AppTheme.colorPrimario.opacity(0.4), radius: 5, x: 0, y: 3)
+                }
+                .scaleEffect(mostrarError ? 1.05 : 1.0)
+                .animation(.easeInOut, value: mostrarError)
+
+                // Navegación al menú principal
+                NavigationLink("", destination: PantallaMenu(), isActive: $navegarAMenu)
             }
             .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(10)
-
-            // Botón Registrar
-            Button(action: registrarUsuario) {
-                Text("Registrar")
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(12)
-                    .shadow(radius: 3)
-            }
-            .scaleEffect(mostrarError ? 1.05 : 1.0)
-            .animation(.easeInOut, value: mostrarError)
-
-            // Navegación al menú
-            NavigationLink("", destination: PantallaMenu(), isActive: $navegarAMenu)
         }
-        .padding()
         .alert(isPresented: $mostrarAlerta) {
             Alert(title: Text(mensaje))
         }
     }
 
+    // MARK: - Lógica de registro
     private func registrarUsuario() {
         guard !nombres.isEmpty, !apellidos.isEmpty, !correo.isEmpty, !password.isEmpty else {
-            mensaje = "Por favor completa todos los campos ❌"
+            mensaje = "Por favor completa todos los campos"
             mostrarError = true
             mostrarAlerta = true
             return
         }
 
         if auth.registrar(nombre: nombres, email: correo, password: password) {
-            mensaje = "Registro exitoso ✅"
+            mensaje = "Registro exitoso"
             mostrarError = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 navegarAMenu = true
             }
         } else {
-            mensaje = "El correo ya está registrado ❌"
+            mensaje = "El correo ya está registrado"
             mostrarError = true
         }
 
@@ -85,5 +88,6 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView().environmentObject(AuthManager())
+    RegisterView()
+        .environmentObject(AuthManager())
 }

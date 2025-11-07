@@ -14,6 +14,8 @@
 		FB366F882EB657E200190E14 /* OptimentumBiomedicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB366F872EB657E200190E14 /* OptimentumBiomedicTests.swift */; };
 		FB366F922EB657E200190E14 /* OptimentumBiomedicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB366F912EB657E200190E14 /* OptimentumBiomedicUITests.swift */; };
 		FB366F942EB657E200190E14 /* OptimentumBiomedicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB366F932EB657E200190E14 /* OptimentumBiomedicUITestsLaunchTests.swift */; };
+		FB5ACDE92EBD65DB000CBAFF /* CreditosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5ACDE82EBD65DB000CBAFF /* CreditosView.swift */; };
+		FB5ACDEF2EBD6C78000CBAFF /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5ACDEE2EBD6C78000CBAFF /* AppTheme.swift */; };
 		FBD7E63A2EBABF8A009F7B2C /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E6392EBABF8A009F7B2C /* RegisterView.swift */; };
 		FBD7E63C2EBAC049009F7B2C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E63B2EBAC049009F7B2C /* LoginView.swift */; };
 		FBD7E63E2EBAC095009F7B2C /* PantallaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7E63D2EBAC095009F7B2C /* PantallaMenu.swift */; };
@@ -53,6 +55,8 @@
 		FB366F8D2EB657E200190E14 /* OptimentumBiomedicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimentumBiomedicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB366F912EB657E200190E14 /* OptimentumBiomedicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimentumBiomedicUITests.swift; sourceTree = "<group>"; };
 		FB366F932EB657E200190E14 /* OptimentumBiomedicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimentumBiomedicUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FB5ACDE82EBD65DB000CBAFF /* CreditosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditosView.swift; sourceTree = "<group>"; };
+		FB5ACDEE2EBD6C78000CBAFF /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		FBD7E6392EBABF8A009F7B2C /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		FBD7E63B2EBAC049009F7B2C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FBD7E63D2EBAC095009F7B2C /* PantallaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantallaMenu.swift; sourceTree = "<group>"; };
@@ -116,8 +120,10 @@
 				FBD7E6472EBAC83D009F7B2C /* Usuario.swift */,
 				FBD7E6492EBAC859009F7B2C /* AuthManager.swift */,
 				FBD7E6452EBAC1E5009F7B2C /* ContratoView.swift */,
+				FB5ACDE82EBD65DB000CBAFF /* CreditosView.swift */,
 				FBD7E6432EBAC1C3009F7B2C /* CotizacionView.swift */,
 				FBD7E63F2EBAC16F009F7B2C /* HojaDeVidaView.swift */,
+				FB5ACDEE2EBD6C78000CBAFF /* AppTheme.swift */,
 				FBD7E63D2EBAC095009F7B2C /* PantallaMenu.swift */,
 				FBD7E6412EBAC195009F7B2C /* InventarioView.swift */,
 				FBD7E63B2EBAC049009F7B2C /* LoginView.swift */,
@@ -287,12 +293,14 @@
 				FBD7E63A2EBABF8A009F7B2C /* RegisterView.swift in Sources */,
 				FB366F792EB657DF00190E14 /* ContentView.swift in Sources */,
 				FBD7E6462EBAC1E5009F7B2C /* ContratoView.swift in Sources */,
+				FB5ACDEF2EBD6C78000CBAFF /* AppTheme.swift in Sources */,
 				FBD7E6422EBAC195009F7B2C /* InventarioView.swift in Sources */,
 				FBD7E63C2EBAC049009F7B2C /* LoginView.swift in Sources */,
 				FB366F772EB657DF00190E14 /* OptimentumBiomedicApp.swift in Sources */,
 				FBD7E6442EBAC1C3009F7B2C /* CotizacionView.swift in Sources */,
 				FBD7E63E2EBAC095009F7B2C /* PantallaMenu.swift in Sources */,
 				FBD7E64A2EBAC859009F7B2C /* AuthManager.swift in Sources */,
+				FB5ACDE92EBD65DB000CBAFF /* CreditosView.swift in Sources */,
 				FBD7E6482EBAC83D009F7B2C /* Usuario.swift in Sources */,
 				FBD7E6402EBAC16F009F7B2C /* HojaDeVidaView.swift in Sources */,
 			);

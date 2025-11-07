@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var auth: AuthManager  // ✅ conexión con el servicio
+    @EnvironmentObject var auth: AuthManager
     @State private var email = ""
     @State private var password = ""
     @State private var mostrarError = false
@@ -16,84 +17,84 @@ struct LoginView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                // 🖼️ Logo
-                Image("LOGO")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                    .padding()
+            ZStack {
+                // Fondo principal con gradiente biomédico
+                AppTheme.gradientePrincipal
+                    .ignoresSafeArea()
 
-                // 🧾 Títulos
-                VStack(spacing: 2) {
-                    Text("Bienvenido")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                    Text("Ingeniero")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                }
+                VStack(spacing: 25) {
+                    // Logo
+                    Image("LOGO")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 140, height: 140)
+                        .padding(.bottom, 10)
 
-                // 📧 Email
-                TextField("Email", text: $email)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
+                    // Campos de texto personalizados
+                    CampoTexto(placeholder: "Correo electrónico", texto: $email)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                    
+                    CampoTexto(placeholder: "Contraseña", texto: $password, esSeguro: true)
 
-                // 🔒 Contraseña
-                SecureField("Contraseña", text: $password)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-
-                // 🚀 Botón de login
-                Button(action: {
-                    if auth.login(email: email.lowercased(), password: password) {
-                        withAnimation(.easeInOut) {
-                            navegarMenu = true
-                            mostrarError = false
+                    // Botón de login
+                    Button(action: {
+                        if auth.login(email: email.lowercased(), password: password) {
+                            withAnimation(.easeInOut) {
+                                navegarMenu = true
+                                mostrarError = false
+                            }
+                        } else {
+                            withAnimation(.spring()) {
+                                mostrarError = true
+                            }
                         }
-                    } else {
-                        withAnimation(.spring()) {
-                            mostrarError = true
-                        }
+                    }) {
+                        Text("Iniciar sesión")
+                            .font(AppTheme.fuenteSubtitulo)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(AppTheme.colorResaltado.opacity(0.9))
+                            .cornerRadius(12)
+                            .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 2)
                     }
-                }) {
-                    Text("Iniciar sesión")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .shadow(radius: 3)
+                    .scaleEffect(mostrarError ? 1.05 : 1.0)
+                    .animation(.easeInOut, value: mostrarError)
+
+                    //  Error
+                    if mostrarError {
+                        Text("Usuario o contraseña incorrectos")
+                            .foregroundColor(.red)
+                            .font(AppTheme.fuentePequena)
+                            .transition(.opacity.combined(with: .slide))
+                    }
+
+                    // Navegación
+                    NavigationLink("", destination: PantallaMenu(), isActive: $navegarMenu)
+
+                    // Extras
+                    VStack(spacing: 8) {
+                        Button("¿Olvidaste tu contraseña?") {}
+                            .foregroundColor(.white)
+                            .font(AppTheme.fuentePequena)
+
+                        NavigationLink("Registrarse", destination: RegisterView())
+                            .foregroundColor(AppTheme.colorPrimario)
+                            .underline()
+                            .font(AppTheme.fuenteNormal)
+                    }
+                    .padding(.top, 10)
                 }
-                .scaleEffect(mostrarError ? 1.05 : 1.0)
-                .animation(.easeInOut, value: mostrarError)
-
-                // ❌ Mensaje de error
-                if mostrarError {
-                    Text("Usuario o contraseña incorrectos")
-                        .foregroundColor(.red)
-                        .font(.caption)
-                        .transition(.opacity.combined(with: .slide))
-                }
-
-                // 🧭 Navegación al menú principal
-                NavigationLink("", destination: PantallaMenu(), isActive: $navegarMenu)
-
-                // 🔗 Enlaces extra
-                Button("¿Olvidaste tu contraseña?") {}
-                    .foregroundColor(.blue)
-
-                NavigationLink("Registro", destination: RegisterView())
-                    .underline()
-                    .padding(.top)
+                .padding()
             }
-            .padding()
         }
     }
+}
+
+#Preview {
+    LoginView()
+        .environmentObject(AuthManager())
 }
 
 #Preview {
